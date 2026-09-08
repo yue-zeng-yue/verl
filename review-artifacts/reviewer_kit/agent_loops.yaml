@@ -1,0 +1,2 @@
+- name: grpo_seeded_single_turn
+  _target_: grpo_seeded_agent.SeededSingleTurnAgentLoop

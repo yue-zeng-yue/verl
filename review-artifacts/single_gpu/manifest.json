@@ -1,0 +1,41 @@
+{
+  "files": {
+    "README.md": {
+      "bytes": 3731,
+      "sha256": "19b9b1c97251adf3d59909936e7fa91920726558b3965d897b9b0e43f856e392",
+      "git_blob_sha": "07f1482225c8fbab848fde9eec1bb6f016142846"
+    },
+    "grpo_5090_historical.png": {
+      "bytes": 167542,
+      "sha256": "06badb8eb2864f9f67bb79e51ca681096114fb91248bcd9e580da4de6681bb22",
+      "git_blob_sha": "2c60e99ae6e498a6f1137be3ed19abbf50c45984"
+    },
+    "grpo_5090_historical.svg": {
+      "bytes": 110853,
+      "sha256": "5869585fda027738ff6e83aeb1c6f5d6f82d3d92b0dfc6eb9c14dab8dc4929ba",
+      "git_blob_sha": "6eebfc8a3e3e1615b441c6cfa4edd5879764e357"
+    },
+    "plot_data.json": {
+      "bytes": 5323,
+      "sha256": "bfe683e23b03bcf143e3be31e5254c59e9aa382c8c33faf8f57056a3f3593dfe",
+      "git_blob_sha": "c611d55c742e6bbabcec37e7b9a18835d1400138"
+    },
+    "plot_single_gpu.py": {
+      "bytes": 6434,
+      "sha256": "b97a4a9501928573f1243cd57f42a2f0ed35ac33d8733c3cab53d7b2a36120a7",
+      "git_blob_sha": "b1f1b7c1d433d89373ecf3f6684c98bd4886c806"
+    },
+    "single_gpu_evidence.zip": {
+      "bytes": 206062,
+      "sha256": "37df72fa3605d08cf6d04fd86d2ef3191b8c46bb05167ccd3ea52ac97accb660",
+      "git_blob_sha": "5dd47a79ee44a8c26917cd09797033bcfa3feae7"
+    }
+  },
+  "validation": {
+    "zip_and_inner_hashes": "PASS",
+    "5090_values_unchanged": "PASS",
+    "regeneration_from_extracted_records": "byte-identical PNG/SVG/data",
+    "regeneration_from_exported_data": "byte-identical PNG/SVG/data",
+    "new_gpu_runs": false
+  }
+}
