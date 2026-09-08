@@ -14,6 +14,11 @@ Read the [PR preview with inline experiment figures](PR_PREVIEW.md), or open the
 [figure gallery, plotted values and regeneration script](figures/README.md).
 The figures replot the existing experiments; no new GPU runs are claimed.
 
+The [single-GPU supplement](single_gpu/README.md) adds the historical RTX 5090 D
+prototype's 20-step GRPO result and a separate single-A800 case with little
+memory benefit. It includes an additional figure, source data and a compact
+evidence archive, with explicit version/workload labels and runtime costs.
+
 1. Download [VERL_FSDP2_REVIEWER_KIT.zip](VERL_FSDP2_REVIEWER_KIT.zip?raw=1)
    (1,179,268 bytes), verify its checksum below, and unzip it.
 2. Follow the [reviewer quick start](reviewer_kit/README.md) to prepare the pinned

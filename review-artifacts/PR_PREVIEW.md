@@ -39,12 +39,12 @@ The off/on trials generated 872551 / 693670 response tokens respectively. The sh
 ### Benchmark figures
 
 The figures below are derived from existing raw measurements. Each experiment
-has one trial per arm. [Plotted values, source hashes and regeneration script](figures/README.md)
+has one trial per arm. [Plotted values, source hashes and regeneration script](https://github.com/yue-zeng-yue/verl/blob/f4bb72ee6df7e75adcba844e4b8736d329d6a98a/review-artifacts/figures/README.md)
 are available alongside the original evidence archives.
 
 #### Controlled fixed-input Engine A/B (current-main acceptance)
 
-![Controlled fixed-input actor memory and runtime comparison](figures/fixed_input_ab.png)
+![Controlled fixed-input actor memory and runtime comparison](https://raw.githubusercontent.com/yue-zeng-yue/verl/f4bb72ee6df7e75adcba844e4b8736d329d6a98a/review-artifacts/figures/fixed_input_ab.png)
 
 On base `7cb6501`, the six-update, 128-token check reduced actor peak allocated
 memory from 15.703 to 12.472 GiB (−20.58%) and increased the complete actor window
@@ -54,7 +54,7 @@ memory/correctness check, not an end-to-end GRPO throughput measurement.
 
 #### Original 100-step GRPO memory
 
-![Actor memory across all 100 GRPO steps and whole-GPU peak comparison](figures/grpo_memory.png)
+![Actor memory across all 100 GRPO steps and whole-GPU peak comparison](https://raw.githubusercontent.com/yue-zeng-yue/verl/f4bb72ee6df7e75adcba844e4b8736d329d6a98a/review-artifacts/figures/grpo_memory.png)
 
 These are the original `c80729f` runs described in the table above. All 100 raw
 per-step actor peaks are shown without smoothing. Actor allocated peak drops
@@ -63,7 +63,7 @@ per-step actor peaks are shown without smoothing. Actor allocated peak drops
 
 #### Original GRPO runtime and held-out validation
 
-![Raw actor-window time and three measured GSM8K validation points](figures/grpo_runtime_validation.png)
+![Raw actor-window time and three measured GSM8K validation points](https://raw.githubusercontent.com/yue-zeng-yue/verl/f4bb72ee6df7e75adcba844e4b8736d329d6a98a/review-artifacts/figures/grpo_runtime_validation.png)
 
 Actor median time over steps 6–100 rises from 10.566 to 11.577 s in this pair.
 The two arms generated different response lengths, so this is observational
@@ -71,6 +71,45 @@ timing. Validation is measured only at steps 0, 50 and 100 on 128 held-out
 examples. The initial scores already differ; the final result is 96/128 off and
 97/128 on. These three points do not establish quality equivalence, improvement,
 or convergence. Fixed-input tests provide the strict state comparison.
+
+
+### Supplemental single-GPU observations
+
+#### Historical RTX 5090 D prototype (2026-09-05)
+
+![Historical RTX 5090 D single-GPU GRPO memory and runtime](single_gpu/grpo_5090_historical.png)
+
+This earlier run used one RTX 5090 D, Qwen2.5-0.5B-Instruct and GSM8K, with
+20 GRPO steps / 80 AdamW updates per arm (160 prompts, four responses each).
+It used base `23af6a7` plus the three-file prototype, not the final PR code.
+The prototype loaded states before gradient clipping; the current implementation
+loads after clipping in the finite-gradient branch and preserves context policy.
+
+| Metric | Off | On | Observed change |
+|---|---:|---:|---:|
+| Full actor-window allocated peak | 10.5635 GiB | 8.3766 GiB | −20.70% |
+| Whole-GPU sampled NVML peak | 14.6393 GiB | 12.8151 GiB | −12.46% |
+| Actor-window median, all 20 steps | 11.9157 s | 13.8404 s | +16.15% |
+
+These are relative to this workload's own baseline. One trial per arm and
+different generated trajectories do not isolate timing effects or establish
+quality improvement. This median includes all 20 steps; the main dual-A800
+median excludes the first five. Different hardware, model, source version and
+training length prevent a direct single-versus-dual-GPU scaling comparison.
+
+#### Single-A800 fixed-input case with little benefit
+
+The original A800 archive also includes a separate single-A800 80GB PCIe Engine
+check, based on `c80729f`, with Qwen2.5-1.5B-Instruct, 128 tokens and six updates
+per arm. Peak allocated memory was 24.9911/24.8143 GiB off/on (−0.71%); the full
+window took 9.1639/14.8091 s (+61.60%), including transfers and monitoring.
+This bounded SFT-loss Engine check is not GRPO or a steady-throughput estimate.
+It illustrates the workload-dependent tradeoff behind the default-off option.
+
+[Supplemental methods, plotted data and raw evidence](single_gpu/README.md)
+include the historical prototype patch and a script that regenerates the figure.
+These records are supplementary; current-branch acceptance and the main dual-GPU
+validation remain the primary implementation evidence.
 
 
 AI assistance: Codex was used for implementation, tests, experiment automation, and writing. The recorded commands and experiment runs below were executed by Codex.
