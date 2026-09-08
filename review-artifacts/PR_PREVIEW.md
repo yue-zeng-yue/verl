@@ -72,36 +72,6 @@ examples. The initial scores already differ; the final result is 96/128 off and
 97/128 on. These three points do not establish quality equivalence, improvement,
 or convergence. Fixed-input tests provide the strict state comparison.
 
-
-### Supplemental single-GPU observations
-
-#### RTX 5090 D: single-GPU GRPO (2026-09-05)
-
-![RTX 5090 D single-GPU GRPO memory and runtime](single_gpu/grpo_5090_historical.png)
-
-*Tested code: `23af6a7` + experiment patch; differs from the final PR revision. See the linked methods for source details.*
-
-One RTX 5090 D, Qwen2.5-0.5B-Instruct and GSM8K, with 20 GRPO steps /
-80 AdamW updates per arm (160 prompts, four responses each).
-
-| Metric | Off | On | Observed change |
-|---|---:|---:|---:|
-| Full actor-window allocated peak | 10.5635 GiB | 8.3766 GiB | −20.70% |
-| Whole-GPU sampled NVML peak | 14.6393 GiB | 12.8151 GiB | −12.46% |
-| Actor-window median, all 20 steps | 11.9157 s | 13.8404 s | +16.15% |
-
-These are relative to this workload's own baseline. One trial per arm and
-different generated trajectories do not isolate timing effects or establish
-quality improvement. This median includes all 20 steps; the main dual-A800
-median excludes the first five. Different hardware, model, source version and
-training length prevent a direct single-versus-dual-GPU scaling comparison.
-
-[Supplemental methods, plotted data and raw evidence](single_gpu/README.md)
-include the tested patch and a script that regenerates the figure.
-Current-branch acceptance and the main dual-GPU validation remain the primary
-implementation evidence.
-
-
 AI assistance: Codex was used for implementation, tests, experiment automation, and writing. The recorded commands and experiment runs below were executed by Codex.
 
 ### Reviewer reproduction
