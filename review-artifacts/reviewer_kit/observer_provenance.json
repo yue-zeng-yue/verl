@@ -1,0 +1,8 @@
+{
+  "fixed_input.py": "93b41cfe303ec6504b80696ef0dc6472600f6aedc6028dc8b6723ebb629249ac",
+  "grpo_probe.py": "abc9f7e567d290aa7be5334322ac93b9adbbed1a40719a05c7a4219572a34745",
+  "grpo_reward.py": "02180046d8dd774fab8b20e60d090a63c3e72b4a48c2e0586cee91c0a23fe233",
+  "grpo_seeded_agent.py": "9ebd111977730b051c724f17be88d96ed98fda5b2176d092bb6a1c5d68ea53d4",
+  "agent_loops.yaml": "000eb10e993bcc2dbdfca4f64574f8f3b3913aa5d6c7c90ccc4e3b46534b221f",
+  "summarize_grpo.py": "de5bd5d16e833def20ea189824cfd112c388e986cef083b414b8480e91a7744e"
+}
