@@ -30,7 +30,7 @@ Same host, 2×A800 80GB PCIe (SYS topology, no NVLink), Qwen2.5-1.5B-Instruct, G
 | Steady actor-window median, including transfers | 10.566 s | 11.577 s |
 | Steady training-step median | 27.925 s | 26.398 s |
 
-Actor peak decreases by 15.80%, with +9.56% actor median time. Actor and whole-GPU peaks measure different scopes; rollout memory can dominate the latter. The single-GPU 128-token case had little memory benefit and appreciable transfer overhead, supporting an opt-in default.
+Actor peak decreases by 15.80%, with +9.56% actor median time. Actor and whole-GPU peaks measure different scopes; rollout memory can dominate the latter.
 
 These are one GRPO trial per arm, with different generated trajectories despite matching sampling requests; they do not establish a quality improvement or a general speedup. Steady actor statistics exclude the first five steps; steady training-step statistics also exclude checkpoint steps. Full wall times include initialization, validation and checkpoint auditing, including baseline checkpoint relocation for disk capacity, so they are not used for pure performance attribution. Strict numerical equivalence is checked separately with fixed inputs. The original 100-step and checkpoint GPU runs use `c80729f`. The initial delivery alignment to `d040717` only adds an Ascend vLLM patch; current-main reviewer-entrypoint acceptance is recorded separately below.
 
@@ -75,15 +75,14 @@ or convergence. Fixed-input tests provide the strict state comparison.
 
 ### Supplemental single-GPU observations
 
-#### Historical RTX 5090 D prototype (2026-09-05)
+#### RTX 5090 D: single-GPU GRPO (2026-09-05)
 
-![Historical RTX 5090 D single-GPU GRPO memory and runtime](single_gpu/grpo_5090_historical.png)
+![RTX 5090 D single-GPU GRPO memory and runtime](single_gpu/grpo_5090_historical.png)
 
-This earlier run used one RTX 5090 D, Qwen2.5-0.5B-Instruct and GSM8K, with
-20 GRPO steps / 80 AdamW updates per arm (160 prompts, four responses each).
-It used base `23af6a7` plus the three-file prototype, not the final PR code.
-The prototype loaded states before gradient clipping; the current implementation
-loads after clipping in the finite-gradient branch and preserves context policy.
+*Tested code: `23af6a7` + experiment patch; differs from the final PR revision. See the linked methods for source details.*
+
+One RTX 5090 D, Qwen2.5-0.5B-Instruct and GSM8K, with 20 GRPO steps /
+80 AdamW updates per arm (160 prompts, four responses each).
 
 | Metric | Off | On | Observed change |
 |---|---:|---:|---:|
@@ -97,19 +96,10 @@ quality improvement. This median includes all 20 steps; the main dual-A800
 median excludes the first five. Different hardware, model, source version and
 training length prevent a direct single-versus-dual-GPU scaling comparison.
 
-#### Single-A800 fixed-input case with little benefit
-
-The original A800 archive also includes a separate single-A800 80GB PCIe Engine
-check, based on `c80729f`, with Qwen2.5-1.5B-Instruct, 128 tokens and six updates
-per arm. Peak allocated memory was 24.9911/24.8143 GiB off/on (−0.71%); the full
-window took 9.1639/14.8091 s (+61.60%), including transfers and monitoring.
-This bounded SFT-loss Engine check is not GRPO or a steady-throughput estimate.
-It illustrates the workload-dependent tradeoff behind the default-off option.
-
 [Supplemental methods, plotted data and raw evidence](single_gpu/README.md)
-include the historical prototype patch and a script that regenerates the figure.
-These records are supplementary; current-branch acceptance and the main dual-GPU
-validation remain the primary implementation evidence.
+include the tested patch and a script that regenerates the figure.
+Current-branch acceptance and the main dual-GPU validation remain the primary
+implementation evidence.
 
 
 AI assistance: Codex was used for implementation, tests, experiment automation, and writing. The recorded commands and experiment runs below were executed by Codex.

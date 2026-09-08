@@ -1,4 +1,4 @@
-"""Plot historical single-GPU evidence; no new training runs or interpolation.
+"""Plot single-GPU GRPO evidence; no new training runs or interpolation.
 
 python plot_single_gpu.py --evidence extracted-evidence --out regenerated
 python plot_single_gpu.py --data plot_data.json --out regenerated
@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 
 GIB = 2**30
 COLORS = {"off": "#526783", "on": "#008575"}
-LABELS = {"off": "Off (prototype baseline)", "on": "On (prototype enabled)"}
+LABELS = {"off": "Off", "on": "On"}
 
 
 def extract(root):
@@ -57,14 +57,7 @@ def extract(root):
         grpo[arm] = {"steps": list(range(1, 21)), "actor_peak_bytes": memory,
                      "actor_seconds": seconds, "actor_median_seconds": statistics.median(seconds),
                      "nvml_peak_bytes": nvml, "nvml_samples": len(samples)}
-    a800 = {}
-    for arm in COLORS:
-        row = read(f"a800_fixed/single_{arm}/rank_0/summary.json")
-        assert row["status"] == "PASS" and row["world_size"] == 1
-        assert row["updates"] == 6 and row["sequence_length"] == 128
-        a800[arm] = {"peak_bytes": row["full_window_peak_allocated"],
-                     "window_seconds": row["full_window_seconds_including_monitoring"]}
-    return {"metadata": metadata, "grpo_5090": grpo, "a800_fixed": a800, "source_sha256": hashes}
+    return {"metadata": metadata, "grpo_5090": grpo, "source_sha256": hashes}
 
 
 def plot(data, out):
@@ -80,7 +73,7 @@ def plot(data, out):
     time_change = 100 * (rows["on"]["actor_median_seconds"] / rows["off"]["actor_median_seconds"] - 1)
     fig, axes = plt.subplots(1, 3, figsize=(14.2, 5.2))
     fig.subplots_adjust(left=0.055, right=0.98, top=0.71, bottom=0.26, wspace=0.37)
-    fig.text(0.055, 0.94, "Historical single-GPU GRPO: RTX 5090 D prototype", fontsize=18, weight="bold", va="top")
+    fig.text(0.055, 0.94, "Single-GPU GRPO: RTX 5090 D", fontsize=18, weight="bold", va="top")
     fig.text(0.055, 0.86, "Qwen2.5-0.5B-Instruct · GSM8K · 20 steps / 80 Adam updates per arm · base 23af6a7 · 2026-09-05", fontsize=11, color="#425466", va="top")
     for ax in axes:
         ax.grid(axis="y", color="#E6EAF0", linewidth=0.8)
@@ -98,7 +91,7 @@ def plot(data, out):
     axes[1].set(title="Actor and sampled whole-GPU peaks", ylabel="GiB", xticks=[0.16, 1.16], xticklabels=["Actor allocated", "Whole GPU"], ylim=(0, 18.5))
     axes[2].set(title=f"Actor median time: +{time_change:.2f}%", ylabel="Seconds / actor window", xticks=[0, 1], xticklabels=["Off", "On"], ylim=(0, 18.5))
     fig.text(0.055, 0.135, f"Own-baseline changes: actor peak −{actor_saved:.2f}%; whole-GPU peak −{nvml_saved:.2f}%. Actor median uses all 20 steps, including warmup.", fontsize=10, color="#425466", va="top")
-    fig.text(0.055, 0.08, "Early prototype, not the final PR code. One trial per arm with different generated trajectories; no GPU scaling or quality claim.", fontsize=10, color="#425466", va="top")
+    fig.text(0.055, 0.08, "Tested code: 23af6a7 + experiment patch; differs from final PR. One trial per arm; generated trajectories differ.", fontsize=10, color="#425466", va="top")
     fig.savefig(out / "grpo_5090_historical.png", dpi=180, facecolor="white")
     fig.savefig(out / "grpo_5090_historical.svg", facecolor="white", metadata={"Date": None})
     plt.close(fig)

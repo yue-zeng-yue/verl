@@ -1,38 +1,39 @@
 {
   "files": {
     "README.md": {
-      "bytes": 4767,
-      "sha256": "032a8c45c7a8181651483d59c2f98d6f3b09f3e61bbdd0cdaea5419762a01b7b",
-      "git_blob_sha": "6f181fbc9631e6c1b2fadbdab9c845d993103e7d"
+      "bytes": 3731,
+      "sha256": "19b9b1c97251adf3d59909936e7fa91920726558b3965d897b9b0e43f856e392",
+      "git_blob_sha": "07f1482225c8fbab848fde9eec1bb6f016142846"
     },
     "grpo_5090_historical.png": {
-      "bytes": 180340,
-      "sha256": "66ba851722823ffc718330af620b000fadf648bf021af010d31bd9552243e68e",
-      "git_blob_sha": "b87e4a7f661da775bd1e8d796d21804ae254f9a9"
+      "bytes": 167542,
+      "sha256": "06badb8eb2864f9f67bb79e51ca681096114fb91248bcd9e580da4de6681bb22",
+      "git_blob_sha": "2c60e99ae6e498a6f1137be3ed19abbf50c45984"
     },
     "grpo_5090_historical.svg": {
-      "bytes": 117463,
-      "sha256": "152aa137451045db9736315124304f3047a5f453a0bec6ccd9fff65ede8c6c73",
-      "git_blob_sha": "77bc0f63b9e36a1d8c0b607861216273830c9ecc"
+      "bytes": 110853,
+      "sha256": "5869585fda027738ff6e83aeb1c6f5d6f82d3d92b0dfc6eb9c14dab8dc4929ba",
+      "git_blob_sha": "6eebfc8a3e3e1615b441c6cfa4edd5879764e357"
     },
     "plot_data.json": {
-      "bytes": 6084,
-      "sha256": "f81a6769c4c9dc0d8ec4936572e90887d617430c4e2fa2aee6c6552a7142b458",
-      "git_blob_sha": "d25bf3da42fd7d1c659a244830337563d334ec14"
+      "bytes": 5323,
+      "sha256": "bfe683e23b03bcf143e3be31e5254c59e9aa382c8c33faf8f57056a3f3593dfe",
+      "git_blob_sha": "c611d55c742e6bbabcec37e7b9a18835d1400138"
     },
     "plot_single_gpu.py": {
-      "bytes": 6935,
-      "sha256": "b989a6e909ecf4924fb1203c3d89a3a3db08757aed5501a59b92ad912da28b05",
-      "git_blob_sha": "eb75de6365a1fcdd4061425d3bb7e90b4dc6237b"
+      "bytes": 6434,
+      "sha256": "b97a4a9501928573f1243cd57f42a2f0ed35ac33d8733c3cab53d7b2a36120a7",
+      "git_blob_sha": "b1f1b7c1d433d89373ecf3f6684c98bd4886c806"
     },
     "single_gpu_evidence.zip": {
-      "bytes": 310096,
-      "sha256": "4c38fe2337dee2a844927b2c01f38ba56764cd8ec5742ad7ab8eb38eb36bf249",
-      "git_blob_sha": "c5f3833332fd6e4925a0c4fb37c8a215d0c23aa0"
+      "bytes": 206062,
+      "sha256": "37df72fa3605d08cf6d04fd86d2ef3191b8c46bb05167ccd3ea52ac97accb660",
+      "git_blob_sha": "5dd47a79ee44a8c26917cd09797033bcfa3feae7"
     }
   },
   "validation": {
     "zip_and_inner_hashes": "PASS",
+    "5090_values_unchanged": "PASS",
     "regeneration_from_extracted_records": "byte-identical PNG/SVG/data",
     "regeneration_from_exported_data": "byte-identical PNG/SVG/data",
     "new_gpu_runs": false

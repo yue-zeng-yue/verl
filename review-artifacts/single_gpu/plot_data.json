@@ -3,7 +3,7 @@
     "grpo_5090": {
       "date": "2026-09-05",
       "base": "23af6a7a2e8d6efeeb2adbe5d1689c7a24f503a3",
-      "implementation": "early three-file prototype; loads before gradient clipping and uses an unconditional opt-in optimizer wrapper; differs from the current PR",
+      "implementation": "base plus three-file experiment patch; loads before gradient clipping through an opt-in optimizer wrapper; differs from the final PR revision",
       "gpu": "1 x RTX 5090 D",
       "model": "Qwen/Qwen2.5-0.5B-Instruct",
       "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
@@ -17,15 +17,6 @@
       "prompt_limit": 512,
       "response_limit": 512,
       "source_export_sha_checks": 28
-    },
-    "a800_fixed": {
-      "date": "2026-09-07",
-      "base": "c80729fbdfdd3fc46a5b224a23cb04aab8f5e51d",
-      "gpu": "1 x A800 80GB PCIe",
-      "model": "Qwen/Qwen2.5-1.5B-Instruct",
-      "sequence_length": 128,
-      "updates_per_arm": 6,
-      "loss": "SFT loss used for Engine fixed-input check; not GRPO"
     },
     "scope": "Selected records supporting supplemental memory/time plots. Original scripts retain historical paths; not the current portable reviewer recipe. No model weights, checkpoint shards, SSH configuration or download logs included."
   },
@@ -173,19 +164,9 @@
       "nvml_samples": 8179
     }
   },
-  "a800_fixed": {
-    "off": {
-      "peak_bytes": 26833967104,
-      "window_seconds": 9.16393387503922
-    },
-    "on": {
-      "peak_bytes": 26644188160,
-      "window_seconds": 14.809118227101862
-    }
-  },
   "source_sha256": {
     "grpo_5090/summary.json": "86d8c12aba35d9a3715aecf33be899cb4b50911305f2c210d721e16ca8f28246",
-    "METADATA.json": "68bacb3d73212fee41b87d25558f79fff7302ac3f2b1ffa4f017d3d8b31d34b6",
+    "METADATA.json": "21c32f8d6e0e92ef9b21a52ca076ca73290c9db817da4543e208eed36dad652c",
     "grpo_5090/results/grpo_off/audit/worker_16316.jsonl": "b63438e7b3f74557455050420ff08b680f2cff8fcb5ddfaf1a9501a01cfa7f38",
     "grpo_5090/results/grpo_off/audit/worker_16714.jsonl": "ae5cc86c296c1672a8c8a83e38571f154b567947051afd8233053f1395d87d65",
     "grpo_5090/results/grpo_off/audit/worker_16954.jsonl": "a69ee748ef315bc5347f8c11ef1205ac88716344286c6946ba6154a2d0fc4a8c",
@@ -195,8 +176,6 @@
     "grpo_5090/results/grpo_on/audit/worker_31386.jsonl": "654e5b39c3aa7e5ab3e2cc01ec874108d4e000a830e12fc7eb8ca2476a0a1de9",
     "grpo_5090/results/grpo_on/audit/worker_31623.jsonl": "0384edf1857f1a801f521d4e5d83f04cf1bb1b1994805d2b4a35bdc45fac66c7",
     "grpo_5090/results/grpo_on/audit/worker_31988.jsonl": "89802483ae1e28e702460905dbfdecd6dd64c402abbcde3b7cdde929152572de",
-    "grpo_5090/results/grpo_on/gpu_samples.csv": "183c70dfde047dc68892f70de4be98f01139b33878c461c1998bdba9310c08f7",
-    "a800_fixed/single_off/rank_0/summary.json": "91f050c200cd76bc4d9b104500b281a9a549ed32c71efbaef63697aeb7854a41",
-    "a800_fixed/single_on/rank_0/summary.json": "22fab4430e94937500ea8e08304d406a04c8ddb11bc697c42d25cd4f10885234"
+    "grpo_5090/results/grpo_on/gpu_samples.csv": "183c70dfde047dc68892f70de4be98f01139b33878c461c1998bdba9310c08f7"
   }
 }
