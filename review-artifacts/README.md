@@ -10,6 +10,10 @@ feature diff.
 
 ## Start here
 
+Read the [PR preview with inline experiment figures](PR_PREVIEW.md), or open the
+[figure gallery, plotted values and regeneration script](figures/README.md).
+The figures replot the existing experiments; no new GPU runs are claimed.
+
 1. Download [VERL_FSDP2_REVIEWER_KIT.zip](VERL_FSDP2_REVIEWER_KIT.zip?raw=1)
    (1,179,268 bytes), verify its checksum below, and unzip it.
 2. Follow the [reviewer quick start](reviewer_kit/README.md) to prepare the pinned
