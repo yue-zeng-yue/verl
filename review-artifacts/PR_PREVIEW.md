@@ -1,7 +1,5 @@
 # [fsdp, perf] feat: offload optimizer states around each update
 
-Draft submission preview. The upstream PR has not been opened; the human-review checklist remains pending.
-
 ### What does this PR do?
 
 With manual optimizer offloading, the FSDP Engine loads optimizer states on entering a training context. When that context spans several mini-batches or epochs, Adam states remain on the GPU during forward and backward computation. Add `optimizer_offload_step=False` so memory-constrained users can keep those states on CPU until an actual parameter update.
