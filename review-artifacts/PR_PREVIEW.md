@@ -37,12 +37,12 @@ The off/on trials generated 872551 / 693670 response tokens respectively. The sh
 ### Benchmark figures
 
 The figures below are derived from existing raw measurements. Each experiment
-has one trial per arm. [Plotted values, source hashes and regeneration script](figures/README.md)
+has one trial per arm. [Plotted values, source hashes and regeneration script](https://github.com/yue-zeng-yue/verl/blob/891e089710b7acb4bd097e279dbd02c91868e9aa/review-artifacts/figures/README.md)
 are available alongside the original evidence archives.
 
 #### Controlled fixed-input Engine A/B (current-main acceptance)
 
-![Controlled fixed-input actor memory and runtime comparison](figures/fixed_input_ab.png)
+![Controlled fixed-input actor memory and runtime comparison](https://raw.githubusercontent.com/yue-zeng-yue/verl/891e089710b7acb4bd097e279dbd02c91868e9aa/review-artifacts/figures/fixed_input_ab.png)
 
 On base `7cb6501`, the six-update, 128-token check reduced actor peak allocated
 memory from 15.703 to 12.472 GiB (−20.58%) and increased the complete actor window
@@ -52,7 +52,7 @@ memory/correctness check, not an end-to-end GRPO throughput measurement.
 
 #### Original 100-step GRPO memory
 
-![Actor memory across all 100 GRPO steps and whole-GPU peak comparison](figures/grpo_memory.png)
+![Actor memory across all 100 GRPO steps and whole-GPU peak comparison](https://raw.githubusercontent.com/yue-zeng-yue/verl/891e089710b7acb4bd097e279dbd02c91868e9aa/review-artifacts/figures/grpo_memory.png)
 
 These are the original `c80729f` runs described in the table above. All 100 raw
 per-step actor peaks are shown without smoothing. Actor allocated peak drops
@@ -61,7 +61,7 @@ per-step actor peaks are shown without smoothing. Actor allocated peak drops
 
 #### Original GRPO runtime and held-out validation
 
-![Raw actor-window time and three measured GSM8K validation points](figures/grpo_runtime_validation.png)
+![Raw actor-window time and three measured GSM8K validation points](https://raw.githubusercontent.com/yue-zeng-yue/verl/891e089710b7acb4bd097e279dbd02c91868e9aa/review-artifacts/figures/grpo_runtime_validation.png)
 
 Actor median time over steps 6–100 rises from 10.566 to 11.577 s in this pair.
 The two arms generated different response lengths, so this is observational
@@ -72,17 +72,9 @@ or convergence. Fixed-input tests provide the strict state comparison.
 
 ### Reviewer reproduction
 
-The companion [reviewer kit ZIP](https://raw.githubusercontent.com/yue-zeng-yue/verl/ec26aee09ef6f736cee2d5685bab3bea4c140eaa/review-artifacts/VERL_FSDP2_REVIEWER_KIT.zip) (1.18 MB) contains portable
-launchers, the prepared GSM8K subset with provenance, and the implementation patch.
-Follow the [quick-start README](https://github.com/yue-zeng-yue/verl/blob/ec26aee09ef6f736cee2d5685bab3bea4c140eaa/review-artifacts/reviewer_kit/README.md);
-[browsable scripts and checksums](README.md),
-[acceptance scope](https://github.com/yue-zeng-yue/verl/blob/ec26aee09ef6f736cee2d5685bab3bea4c140eaa/review-artifacts/reviewer_kit/VALIDATION.md), and the immutable
-[original 100-step evidence ZIP](https://raw.githubusercontent.com/yue-zeng-yue/verl/ec26aee09ef6f736cee2d5685bab3bea4c140eaa/review-artifacts/VERL_A800_REVIEW_BUNDLE.zip) (15.98 MB)
-are public. These materials live on a separate branch in the contributor fork;
-the upstream patch contains only the feature, configuration, docs and small tests.
-Archived PR drafts inside the ZIPs are historical snapshots.
-Use an activated Linux Python 3.12 FSDP/vLLM environment and expose two idle CUDA
-GPUs. The small regression requires no downloaded model or dataset:
+See the [reviewer quick start](reviewer_kit/README.md) for setup, downloads, and commands to run the two-GPU fixed-input and GRPO checks.
+
+The small regression requires no downloaded model or dataset:
 
 ```bash
 torchrun --standalone --nproc-per-node=2 \

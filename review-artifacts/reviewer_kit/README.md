@@ -6,6 +6,15 @@ regression tests are in `implementation.patch`; the measurement observers in
 this kit are external to VERL. Original experiment results are in the separate
 `VERL_A800_REVIEW_BUNDLE.zip` evidence archive.
 
+## Downloads and verification
+
+Download the [reviewer kit ZIP](../VERL_FSDP2_REVIEWER_KIT.zip?raw=1) (1.18 MB)
+for the launchers, prepared data and implementation patch. The separate
+[original experiment evidence ZIP](../VERL_A800_REVIEW_BUNDLE.zip?raw=1)
+(15.98 MB) contains the recorded 100-step results and audits.
+Verify the downloads against the [published SHA-256 checksums](../README.md#sha-256),
+then unzip the reviewer kit before following the setup below.
+
 ## Environment and source
 
 The validated environment is Linux x86_64, Python 3.12, PyTorch 2.11.0+cu130,

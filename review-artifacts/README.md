@@ -53,8 +53,10 @@ ca139eb822ece6bffe61c9fb280635ab1be1b12b63981906a1c142d3df410944  VERL_FSDP2_REV
 ccd2002d5554b11fe37c6f157da5820d796cc1d35b5505e0b13a9cc327d91190  VERL_A800_REVIEW_BUNDLE.zip
 ```
 
-The source files under `reviewer_kit/` are identical to their copies in the kit
-archive and are included here for browser review. Dataset and raw acceptance
+The executable scripts and implementation patch under `reviewer_kit/` match
+their copies in the kit archive and are available for browser review. The web
+quick start additionally links to the downloads and checksums; the immutable ZIP
+retains its original README. Dataset and raw acceptance
 records are in the downloadable archives. The kit's internal `SHA256SUMS` checks
 individual files after extraction.
 
