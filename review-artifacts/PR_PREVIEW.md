@@ -70,8 +70,6 @@ examples. The initial scores already differ; the final result is 96/128 off and
 97/128 on. These three points do not establish quality equivalence, improvement,
 or convergence. Fixed-input tests provide the strict state comparison.
 
-AI assistance: AI tools assisted with implementation, tests, experiment automation, and writing. The recorded commands and experiment runs were executed through an AI coding assistant.
-
 ### Reviewer reproduction
 
 The companion [reviewer kit ZIP](https://raw.githubusercontent.com/yue-zeng-yue/verl/ec26aee09ef6f736cee2d5685bab3bea4c140eaa/review-artifacts/VERL_FSDP2_REVIEWER_KIT.zip) (1.18 MB) contains portable
